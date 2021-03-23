@@ -1,11 +1,9 @@
 package com.example.algorithmsanonymous.ui.login
 
 import android.app.Activity
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import android.app.PendingIntent.getActivity
+import android.content.Intent
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -14,8 +12,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
-
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.example.algorithmsanonymous.MainActivity
 import com.example.algorithmsanonymous.R
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -100,12 +103,17 @@ class LoginActivity : AppCompatActivity() {
     private fun updateUiWithUser(model: LoggedInUserView) {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
+
         // TODO : initiate successful logged in experience
+
         Toast.makeText(
                 applicationContext,
                 "$welcome $displayName",
                 Toast.LENGTH_LONG
         ).show()
+
+        Intent i = new Intent(this, MainActivity::class.java)
+        startActivity (i)
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
