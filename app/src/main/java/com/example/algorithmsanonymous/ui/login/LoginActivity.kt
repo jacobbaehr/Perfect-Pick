@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
+        //setContentView(R.layout.activity_main)
 
         val username = findViewById<EditText>(R.id.username)
         val password = findViewById<EditText>(R.id.password)
@@ -62,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
                 updateUiWithUser(loginResult.success)
             }
             setResult(Activity.RESULT_OK)
+
 
             //Complete and destroy login activity once successful
             finish()
@@ -104,16 +106,17 @@ class LoginActivity : AppCompatActivity() {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
 
-        // TODO : initiate successful logged in experience
-
         Toast.makeText(
                 applicationContext,
                 "$welcome $displayName",
                 Toast.LENGTH_LONG
         ).show()
 
-        Intent i = new Intent(this, MainActivity::class.java)
-        startActivity (i)
+        // CHRIS-LINDSEY: This is where we switch from the login page to the main activity file/page
+        startActivity (
+                Intent(this,
+                MainActivity::class.java
+        ))
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
