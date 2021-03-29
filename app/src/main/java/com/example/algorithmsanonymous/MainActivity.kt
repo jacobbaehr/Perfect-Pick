@@ -3,6 +3,7 @@ package com.example.algorithmsanonymous
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -17,9 +18,25 @@ private const val BASE_URL = "https://api.yelp.com/v3/"
 private const val API_KEY = "ByqULIICRmITM2YWyQrSKQdiEIzLk413fhmf1x-LQ7Sm7PiJb_qUv8Az2GzFaZ-Q8tPGRPMGkmxAomXlg0oaNgfEJMa7yDFUUgsQe3rIg1PzmUy_zRCWxhi5EYRPYHYx"
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val searchFragment = SearchFragment()
+        val favoritesFragment = FavoritesFragment()
+        val profileFragment = ProfileFragment()
+
+        makeCurrentFragment(searchFragment)
+
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_search -> makeCurrentFragment(searchFragment)
+                R.id.nav_favorites -> makeCurrentFragment(favoritesFragment)
+                R.id.nav_profile -> makeCurrentFragment(profileFragment)
+            }
+            true
+        }
 
         val places = mutableListOf<YelpPlaces>()
         val adapter = PlacesAdapter(this, places)
@@ -51,4 +68,15 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+
+    private fun makeCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fl_wrapper, fragment)
+            commit()
+        }
+
+
+
+
+
 }
