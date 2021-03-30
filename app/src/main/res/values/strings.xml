@@ -12,4 +12,6 @@
     <string name="search">search</string>
     <string name="favorites">favorites</string>
     <string name="profile">profile</string>
+    <string name="food_type">Food Type</string>
+    <string name="zip_code">Zip Code</string>
 </resources>
