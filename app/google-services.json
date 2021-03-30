@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1023466740202",
+    "project_id": "android-alganon",
+    "storage_bucket": "android-alganon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1023466740202:android:f3f25bfbd63d063faaba93",
+        "android_client_info": {
+          "package_name": "com.example.algorithmsanonymous"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1023466740202-42smg4tai83e76gr49m91rgnpu9ea5lb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuK9F-1oWROMj59QIxWlbqg5GO6E_rtA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1023466740202-42smg4tai83e76gr49m91rgnpu9ea5lb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
