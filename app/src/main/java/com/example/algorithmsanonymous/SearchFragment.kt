@@ -1,26 +1,36 @@
 package com.example.algorithmsanonymous
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
+import kotlinx.android.synthetic.main.fragment_search.view.*
 
 
 class SearchFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-        inflater.inflate(R.layout.fragment_search, container, false)
+    lateinit var mView: View
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        mView=inflater.inflate(R.layout.fragment_search,container,false)
+
+        // Set button listener, use lateinit var located under class declaration
+        mView.RestaurantButton.setOnClickListener {
+
+            // Call API function from MainActivity
+            //(activity as MainActivity?)!!.searchAPI()
+
+            // -------------------------------------
+            // May use later -- don't delete (Chris)
+            // -------------------------------------
+            this.startActivity(Intent (activity,MainActivity2::class.java))
+
+
+        }
+        // Return the created view above as a result of button click
+        return mView
+    }
 
 
     companion object {
@@ -28,15 +38,6 @@ class SearchFragment : Fragment() {
     }
 
 
-    // ------------------------------------------------------
-    // IMPLEMENTATION THOUGHTS BELOW - UNSURE OF PRACTICALITY
-    // ------------------------------------------------------
-
-    // BUTTON FUNCTIONALITY SHOULD GO HERE -- IF CLICKED, RUN FUNCTION (PASSING NEEDED PARAMETERS THROUGH)
-
-
-    // API SEARCH FUNCTION HERE, USING INPUT FROM TEXT IN FRAGMENT_SEARCH.XML
-
-
-
 }
+
+

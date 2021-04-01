@@ -236,7 +236,7 @@ class LoginActivity: AppCompatActivity() {
                 Toast.LENGTH_LONG
         ).show()
 
-        // CHRIS-LINDSEY: This is where we switch from the login page to the main activity file/page
+        // TEAM: This is where we switch from the login page to the main activity file/page
         startActivity (
                 Intent(this,
                         MainActivity::class.java
@@ -252,7 +252,7 @@ class LoginActivity: AppCompatActivity() {
                 Toast.LENGTH_LONG
         ).show()
 
-        // CHRIS-LINDSEY: This is where we switch from the login page to the main activity file/page
+        // TEAM: This is where we switch from the login page to the main activity file/page
         startActivity (
                 Intent(this,
                         MainActivity::class.java
@@ -291,6 +291,8 @@ class LoginActivity: AppCompatActivity() {
         var post4 = myRef4.child("friends").child("friend4").child(userId).setValue("Jimtron")
         var post5 = myRef5.child("friends").child("friend1").child(userId).setValue("Jimtron7")
     }
+
+
     fun writeNewUserWithTaskListeners(userId: String, name: String, email: String, myRef1:DatabaseReference, myRef2:DatabaseReference, myRef3:DatabaseReference, myRef4:DatabaseReference) {
         val user = User(name, email)
 
