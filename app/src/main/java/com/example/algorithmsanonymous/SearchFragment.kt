@@ -16,14 +16,6 @@ import kotlinx.android.synthetic.main.fragment_search.view.*
 @Suppress("DEPRECATION")
 class SearchFragment : Fragment() {
 
-//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-//                              savedInstanceState: Bundle?): View? {
-//        val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater,
-//                R.layout.fragment_search,container,false)
-//        return binding.root
-//    }
-//}
-
     lateinit var mView: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mView = inflater.inflate(R.layout.fragment_search, container, false)
@@ -45,10 +37,23 @@ class SearchFragment : Fragment() {
 // -------------------------------------
 // May use later -- don't delete (Chris)
 // -------------------------------------
-//(activity as MainActivity?)!!.searchAPI()
-
 // Call API function from MainActivity
+// (activity as MainActivity?)!!.searchAPI()
+
+// Moving to a new activity file
 //this.startActivity(Intent(activity, MainActivity2::class.java))
+
+
+// Attempted to use this code as a means of managing fragment switching
+// Kept getting errors because of the "<FragmentTitleBinding>"
+
+//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+//                              savedInstanceState: Bundle?): View? {
+//        val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater,
+//                R.layout.fragment_search,container,false)
+//        return binding.root
+//    }
+//}
 
 
 
