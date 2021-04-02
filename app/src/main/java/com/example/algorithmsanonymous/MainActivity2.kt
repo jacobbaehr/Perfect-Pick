@@ -40,6 +40,7 @@ class MainActivity2 : AppCompatActivity() {
             true
         }
 
+
         val places = mutableListOf<YelpPlaces>()
         val adapter = PlacesAdapter(this, places)
         rvPlaces.adapter = adapter

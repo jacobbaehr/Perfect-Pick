@@ -18,12 +18,13 @@ class SearchFragment : Fragment() {
         // Set button listener, use lateinit var located under class declaration
         mView.RestaurantButton.setOnClickListener {
 
-            // Call API function from MainActivity
-            //(activity as MainActivity?)!!.searchAPI()
 
             // -------------------------------------
             // May use later -- don't delete (Chris)
             // -------------------------------------
+            // Call API function from MainActivity
+            //(activity as MainActivity?)!!.searchAPI()
+
             this.startActivity(Intent (activity,MainActivity2::class.java))
 
 
