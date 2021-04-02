@@ -25,22 +25,22 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(R.layout.activity_main2)
 
 
-        // Create val for each fragment
-        val searchFragment = SearchFragment()
-        val favoritesFragment = FavoritesFragment()
-        val profileFragment = ProfileFragment()
-
-        // ---------------------
-        // Bottom navigation bar
-        // ---------------------
-        bottom_navigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_search -> makeCurrentFragment(searchFragment)
-                R.id.nav_favorites -> makeCurrentFragment(favoritesFragment)
-                R.id.nav_profile -> makeCurrentFragment(profileFragment)
-            }
-            true
-        }
+//        // Create val for each fragment
+//        val searchFragment = SearchFragment()
+//        val favoritesFragment = FavoritesFragment()
+//        val profileFragment = ProfileFragment()
+//
+//        // ---------------------
+//        // Bottom navigation bar
+//        // ---------------------
+//        bottom_navigation.setOnNavigationItemSelectedListener {
+//            when (it.itemId) {
+//                R.id.nav_search -> makeCurrentFragment(searchFragment)
+//                R.id.nav_favorites -> makeCurrentFragment(favoritesFragment)
+//                R.id.nav_profile -> makeCurrentFragment(profileFragment)
+//            }
+//            true
+//        }
 
 
         val places = mutableListOf<YelpPlaces>()
