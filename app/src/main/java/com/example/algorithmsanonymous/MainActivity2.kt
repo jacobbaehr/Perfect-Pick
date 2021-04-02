@@ -26,6 +26,7 @@ class MainActivity2 : AppCompatActivity() {
 
 
         // Create val for each fragment
+        val searchFragment = SearchFragment()
         val favoritesFragment = FavoritesFragment()
         val profileFragment = ProfileFragment()
 
@@ -34,6 +35,7 @@ class MainActivity2 : AppCompatActivity() {
         // ---------------------
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
+                R.id.nav_search -> makeCurrentFragment(searchFragment)
                 R.id.nav_favorites -> makeCurrentFragment(favoritesFragment)
                 R.id.nav_profile -> makeCurrentFragment(profileFragment)
             }
