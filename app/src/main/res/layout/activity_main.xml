@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,13 +16,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="1dp" />
-    
+
     <FrameLayout
         android:id="@+id/fl_wrapper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_navigation">
-    </FrameLayout>
+        android:layout_above="@id/bottom_navigation"/>
+
+    <fragment
+        android:id="@+id/myNavHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:navGraph="@navigation/navigation"
+        app:defaultNavHost="true" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -30,13 +39,15 @@
         app:menu="@menu/bottom_navigation_menu"
         tools:layout_editor_absoluteX="-133dp" />
 
-    <fragment
-        android:id="@+id/myNavHostFragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:navGraph="@navigation/navigation"
-        app:defaultNavHost="true" />
+<!--    <fragment-->
+<!--        android:id="@+id/myNavHostFragment"-->
+<!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:navGraph="@navigation/navigation"-->
+<!--        app:defaultNavHost="true" />-->
+</androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 <!--    <com.google.android.material.navigation.NavigationView-->
@@ -47,4 +58,3 @@
 <!--        tools:layout_editor_absoluteX="-133dp"-->
 <!--        app:layout_constraintBottom_toBottomOf="@+id/rvPlaces"/>-->
 
-</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_search.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +17,8 @@ class MainActivity : AppCompatActivity() {
         val searchFragment = SearchFragment()
         val favoritesFragment = FavoritesFragment()
         val profileFragment = ProfileFragment()
-        val restarauntFragment = restarauntFragment()
+        val restaurantFragment = restarauntFragment()
+
 
         // Set current fragment to search fragment (primary app functionality)
         makeCurrentFragment(searchFragment)
@@ -33,11 +35,22 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        // Possible way we can set button listeners and switch between fragments (-Chris)
 
+//        RestaurantButton.setOnClickListener {
+//            makeCurrentFragment(restaurantFragment)
+//        }
+//        NightlifeButton.setOnClickListener {
+//            makeCurrentFragment(NightlifeFragment())
+//        }
+//        ActivityButton.setOnClickListener {
+//            makeCurrentFragment(ActivityFragment())
+//        }
     }
 
+
     // PURPOSE: Creation of fragments
-    fun makeCurrentFragment(fragment: Fragment) =
+    private fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fl_wrapper, fragment)
             commit()
