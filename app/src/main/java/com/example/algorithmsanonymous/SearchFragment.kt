@@ -3,17 +3,12 @@ package com.example.algorithmsanonymous
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
-import com.example.*
 import kotlinx.android.synthetic.main.fragment_search.view.*
 
 
@@ -35,7 +30,7 @@ class SearchFragment : Fragment() {
         mView.ActivityButton.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_searchFragment_to_activityFragment)
         }
-        return mView
+        return mView.rootView
     }
     
 }
