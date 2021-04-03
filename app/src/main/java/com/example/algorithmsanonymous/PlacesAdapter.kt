@@ -11,7 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_place.view.*
 
-class PlacesAdapter(val context: Context, val places: List<YelpPlaces>) :
+class PlacesAdapter(val context: Context, val places: List<YelpPlaces>, val listener: OnItemClickListener) :
         RecyclerView.Adapter<PlacesAdapter.ViewHolder>() {
 
 
@@ -26,7 +26,7 @@ class PlacesAdapter(val context: Context, val places: List<YelpPlaces>) :
         holder.bind(place)
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         fun bind(place: YelpPlaces) {
             itemView.tvName.text = place.name
             itemView.ratingBar.rating = place.rating.toFloat()
@@ -39,6 +39,21 @@ class PlacesAdapter(val context: Context, val places: List<YelpPlaces>) :
                     CenterCrop(), RoundedCorners(20)
             )).into(itemView.imageView)
         }
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position: Int = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position)
+            }
+        }
+    }
+
+    interface OnItemClickListener{
+        fun onItemClick(position: Int)
     }
 
 }

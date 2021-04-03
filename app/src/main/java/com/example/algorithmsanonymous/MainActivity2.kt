@@ -1,5 +1,6 @@
 package com.example.algorithmsanonymous
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,12 +15,15 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-// val's needed for API implementation
+// vals needed for API implementation
 private const val TAG = "MainActivity"
 private const val BASE_URL = "https://api.yelp.com/v3/"
 private const val API_KEY = "ByqULIICRmITM2YWyQrSKQdiEIzLk413fhmf1x-LQ7Sm7PiJb_qUv8Az2GzFaZ-Q8tPGRPMGkmxAomXlg0oaNgfEJMa7yDFUUgsQe3rIg1PzmUy_zRCWxhi5EYRPYHYx"
 
-class MainActivity2 : AppCompatActivity() {
+class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
+    val places = mutableListOf<YelpPlaces>()
+    val adapter = PlacesAdapter(this, places, this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
@@ -43,8 +47,8 @@ class MainActivity2 : AppCompatActivity() {
 //        }
 
 
-        val places = mutableListOf<YelpPlaces>()
-        val adapter = PlacesAdapter(this, places)
+//        val places = mutableListOf<YelpPlaces>()
+//        val adapter = PlacesAdapter(this, places)
         rvPlaces.adapter = adapter
         rvPlaces.layoutManager = LinearLayoutManager(this)
 
@@ -76,7 +80,7 @@ class MainActivity2 : AppCompatActivity() {
 
     fun searchAPI() {
         val places = mutableListOf<YelpPlaces>()
-        val adapter = PlacesAdapter(this, places)
+        val adapter = PlacesAdapter(this, places, this)
         rvPlaces.adapter = adapter
         rvPlaces.layoutManager = LinearLayoutManager(this)
 
@@ -103,6 +107,24 @@ class MainActivity2 : AppCompatActivity() {
                 Log.i(TAG, "onFailure $t")
             }
         })
+    }
+
+    //Method for when restaurants are clicked sending them to details page
+    override fun onItemClick(position: Int) {
+        val detailIntent = Intent(this, DetailActivity::class.java)
+        val clickedItem : YelpPlaces = places[position]
+
+        detailIntent.putExtra("EX_NAME", clickedItem.name)
+        detailIntent.putExtra("EX_ADDRESS", clickedItem.location.address)
+        detailIntent.putExtra("EX_PRICE", clickedItem.price)
+        detailIntent.putExtra("EX_URL", clickedItem.imageUrl)
+        detailIntent.putExtra("EX_DISTANCE", clickedItem.displayDistance())
+        detailIntent.putExtra("EX_NUMREVIEWS", clickedItem.numReviews)
+        detailIntent.putExtra("EX_RATING", clickedItem.rating)
+        //detailIntent.putStringArrayListExtra("EX_CATEGORIES", clickedItem.categories.title)
+
+        startActivity(detailIntent)
+
     }
 
     // PURPOSE: Creation of fragments
