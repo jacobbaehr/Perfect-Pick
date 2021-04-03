@@ -9,7 +9,11 @@
         android:id="@+id/restarauntFragment"
         android:name="com.example.algorithmsanonymous.restarauntFragment"
         android:label="fragment_restaraunt"
-        tools:layout="@layout/fragment_restaraunt" />
+        tools:layout="@layout/fragment_restaraunt" >
+        <action
+            android:id="@+id/action_restarauntFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.algorithmsanonymous.SearchFragment"
@@ -28,10 +32,23 @@
         android:id="@+id/nightlifeFragment"
         android:name="com.example.algorithmsanonymous.NightlifeFragment"
         android:label="fragment_nightlife"
-        tools:layout="@layout/fragment_nightlife" />
+        tools:layout="@layout/fragment_nightlife" >
+        <action
+            android:id="@+id/action_nightlifeFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/activityFragment"
         android:name="com.example.algorithmsanonymous.ActivityFragment"
         android:label="fragment_activity"
-        tools:layout="@layout/fragment_activity" />
+        tools:layout="@layout/fragment_activity" >
+        <action
+            android:id="@+id/action_activityFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="com.example.algorithmsanonymous.ResultsFragment"
+        android:label="fragment_results"
+        tools:layout="@layout/fragment_results" />
 </navigation>

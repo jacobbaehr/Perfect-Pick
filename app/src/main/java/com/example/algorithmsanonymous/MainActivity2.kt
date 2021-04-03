@@ -74,6 +74,37 @@ class MainActivity2 : AppCompatActivity() {
 
     }
 
+    fun searchAPI() {
+        val places = mutableListOf<YelpPlaces>()
+        val adapter = PlacesAdapter(this, places)
+        rvPlaces.adapter = adapter
+        rvPlaces.layoutManager = LinearLayoutManager(this)
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val yelpService = retrofit.create(YelpService::class.java)
+        yelpService.search("Bearer $API_KEY","Bar", "Lakeland").enqueue(object : Callback<YelpSearchResult> {
+
+
+            override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
+                Log.i(TAG, "onResponse $response")
+                val body = response.body()
+                if (body == null) {
+                    Log.w(TAG, "Did not receive valid response body from Yelp API... exiting")
+                    return
+                }
+                places.addAll(body.places)
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
+                Log.i(TAG, "onFailure $t")
+            }
+        })
+    }
+
     // PURPOSE: Creation of fragments
     private fun makeCurrentFragment(fragment: Fragment) =
             supportFragmentManager.beginTransaction().apply {

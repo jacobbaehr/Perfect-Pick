@@ -5,22 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import kotlinx.android.synthetic.main.fragment_restaraunt.view.*
+import kotlinx.android.synthetic.main.fragment_search.view.*
+import kotlinx.android.synthetic.main.fragment_search.view.button
 
 
 class restarauntFragment : Fragment() {
 
-    /*
-    NOTES:
-    As the user moves between destinations defined in the navigation graph,
-    the navigation host Fragment swaps fragments in and out as necessary.
-    The Fragment also creates and manages the appropriate Fragment back stack.
-     */
 
+    lateinit var nView: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restaraunt, container, false)
+        // Inflate current fragment
+        nView = inflater.inflate(R.layout.fragment_restaraunt, container, false)
+
+        // Set button listeners and define actions for button press
+        nView.button.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_restarauntFragment_to_resultsFragment)
+        }
+        return nView
     }
 
 
