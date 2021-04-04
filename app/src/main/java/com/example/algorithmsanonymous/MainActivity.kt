@@ -13,12 +13,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Create val for each fragment
+        // Create val for each fragment on nav bar
         val searchFragment = SearchFragment()
         val favoritesFragment = FavoritesFragment()
         val profileFragment = ProfileFragment()
-        val restaurantFragment = restarauntFragment()
-
 
         // Set current fragment to search fragment (primary app functionality)
         makeCurrentFragment(searchFragment)
@@ -27,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         // Bottom navigation bar
         // ---------------------
         bottom_navigation.setOnNavigationItemSelectedListener {
+            // When user clicks on nav bar, initiate transaction to appropriate fragment
             when (it.itemId) {
                 R.id.nav_search -> makeCurrentFragment(searchFragment)
                 R.id.nav_favorites -> makeCurrentFragment(favoritesFragment)
@@ -35,21 +34,11 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        // Possible way we can set button listeners and switch between fragments (-Chris)
 
-//        RestaurantButton.setOnClickListener {
-//            makeCurrentFragment(restaurantFragment)
-//        }
-//        NightlifeButton.setOnClickListener {
-//            makeCurrentFragment(NightlifeFragment())
-//        }
-//        ActivityButton.setOnClickListener {
-//            makeCurrentFragment(ActivityFragment())
-//        }
     }
 
 
-    // PURPOSE: Creation of fragments
+    // PURPOSE: Moving between fragments via FragmentManager
     private fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fl_wrapper, fragment)

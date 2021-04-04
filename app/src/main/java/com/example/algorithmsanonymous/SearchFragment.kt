@@ -20,63 +20,45 @@ import kotlinx.android.synthetic.main.fragment_search.view.*
 @Suppress("DEPRECATION")
 class SearchFragment : Fragment() {
 
+        override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
 
-    lateinit var mView: View
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate current fragment
-        mView = inflater.inflate(R.layout.fragment_search, container, false)
-
-        // The way that we're moving through fragments below introduces bugs and doesn't function 100%
-        // See commented out code below .. I believe that is how we'll need to implement the swaps
-
-        // Set button listeners and define actions for button press
-        mView.RestaurantButton.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_searchFragment_to_restarauntFragment)
+            // Inflate the layout for this fragment
+            return inflater.inflate(R.layout.fragment_search, container, false)
         }
-        mView.NightlifeButton.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_searchFragment_to_nightlifeFragment)
-        }
-        mView.ActivityButton.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_searchFragment_to_activityFragment)
-        }
-        return mView.rootView
 
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            // Set button listener, execute action inside if applicable
+            RestaurantButton.setOnClickListener {
+                // Example of how to make transaction without method call
+                val fr = fragmentManager?.beginTransaction()
+                fr?.replace(R.id.fl_wrapper, restarauntFragment())
+                fr?.commit()
+            }
+            // Set button listener, execute action inside if applicable
+            NightlifeButton.setOnClickListener {
+                // switching between fragments with method
+                replaceFragment(NightlifeFragment())
+            }
+            // Set button listener, execute action inside if applicable
+            ActivityButton.setOnClickListener {
+                replaceFragment(ActivityFragment())
+            }
+        }
+
+
+    // Purpose: Swap from one fragment to another (note the use of fl_wrapper from activity_main.xml)
+    private fun replaceFragment(fragment: Fragment) {
+        val transaction = fragmentManager?.beginTransaction()
+        transaction?.replace(R.id.fl_wrapper, fragment)
+        transaction?.commit()
     }
 
 }
-
-// -------------------------------------
-// May use later -- don't delete (Chris)
-// -------------------------------------
-//        override fun onCreateView(
-//            inflater: LayoutInflater, container: ViewGroup?,
-//            savedInstanceState: Bundle?
-//        ): View? {
-//
-//            // Inflate the layout for this fragment
-//            return inflater.inflate(R.layout.fragment_search, container, false)
-//        }
-//        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//            super.onViewCreated(view, savedInstanceState)
-//
-//            RestaurantButton.setOnClickListener {
-//                val fr = fragmentManager?.beginTransaction()
-//                fr?.replace(R.id.searchFragment, ActivityFragment())
-//                fr?.commit()
-//            }
-//            NightlifeButton.setOnClickListener {
-//                replaceFragment(NightlifeFragment())
-//            }
-//            ActivityButton.setOnClickListener {
-//                replaceFragment(ActivityFragment())
-//            }
-//        }
-//
-//    private fun replaceFragment(fragment: Fragment) {
-//        val transaction = fragmentManager?.beginTransaction()
-//        transaction?.replace(R.id.fl_wrapper, fragment)
-//        transaction?.commit()
-//    }
 
 // Call API function from MainActivity
 // (activity as MainActivity?)!!.searchAPI()

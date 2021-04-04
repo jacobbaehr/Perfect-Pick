@@ -15,8 +15,9 @@ class ResultsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // Transfer to API code in MainActivity2
+        // Transfer to MainActivity2 (API Code to display results)
         this.startActivity(Intent(activity, MainActivity2::class.java))
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_results, container, false)
     }

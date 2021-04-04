@@ -23,14 +23,6 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation"/>
 
-    <fragment
-        android:id="@+id/myNavHostFragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:navGraph="@navigation/navigation"
-        app:defaultNavHost="true" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
@@ -39,6 +31,9 @@
         app:menu="@menu/bottom_navigation_menu"
         tools:layout_editor_absoluteX="-133dp" />
 
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!-- I commented this out since it was the cause of putting fragments on top of each other (Chris)-->
 <!--    <fragment-->
 <!--        android:id="@+id/myNavHostFragment"-->
 <!--        android:name="androidx.navigation.fragment.NavHostFragment"-->
@@ -46,10 +41,8 @@
 <!--        android:layout_height="match_parent"-->
 <!--        app:navGraph="@navigation/navigation"-->
 <!--        app:defaultNavHost="true" />-->
-</androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
+<!-- Not sure what this is for but I'm leaving it just in case someone needed it (Chris)-->
 <!--    <com.google.android.material.navigation.NavigationView-->
 <!--        android:id="@+id/bottom_navigation"-->
 <!--        android:layout_width="match_parent"-->
