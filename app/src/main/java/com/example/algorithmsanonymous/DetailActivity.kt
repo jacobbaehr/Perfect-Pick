@@ -1,17 +1,26 @@
 package com.example.algorithmsanonymous
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_detail.*
 
 
 class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+
+        // Create "listener" for favorites switch
+        favorite2.setOnCheckedChangeListener { _, isChecked ->
+            // do whatever you need to do when the switch is toggled here
+            setContentView(R.layout.fragment_search)
+        }
 
         val intent = intent
 
@@ -47,4 +56,5 @@ class DetailActivity : AppCompatActivity() {
 
 
     }
+
 }
