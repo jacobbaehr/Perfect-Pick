@@ -18,8 +18,9 @@ class DetailActivity : AppCompatActivity() {
 
         // Create "listener" for favorites switch
         favorite2.setOnCheckedChangeListener { _, isChecked ->
-            // do whatever you need to do when the switch is toggled here
-            setContentView(R.layout.fragment_search)
+
+            // do whatever you need to do when the switch is toggled
+            setContentView(R.layout.activity_main)
         }
 
         val intent = intent
@@ -56,5 +57,6 @@ class DetailActivity : AppCompatActivity() {
 
 
     }
+
 
 }
