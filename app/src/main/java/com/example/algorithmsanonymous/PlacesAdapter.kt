@@ -11,7 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_place.view.*
 
-class PlacesAdapter(val context: Context, val places: List<YelpPlaces>, val listener: OnItemClickListener) :
+class PlacesAdapter(val context: Context, private val places: List<YelpPlaces>, val listener: OnItemClickListener) :
         RecyclerView.Adapter<PlacesAdapter.ViewHolder>() {
 
 

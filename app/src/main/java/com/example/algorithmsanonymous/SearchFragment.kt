@@ -42,11 +42,11 @@ class SearchFragment : Fragment() {
             // Set button listener, execute action inside if applicable
             NightlifeButton.setOnClickListener {
                 // switching between fragments with method
-                replaceFragment(NightlifeFragment())
+                replaceFragment(nightlifeFragment())
             }
             // Set button listener, execute action inside if applicable
             ActivityButton.setOnClickListener {
-                replaceFragment(ActivityFragment())
+                replaceFragment(activityFragment())
             }
         }
 

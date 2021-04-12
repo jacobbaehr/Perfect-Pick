@@ -13,6 +13,8 @@ public interface YelpService {
 
             @Header("Authorization") authHeader: String,
             @Query("term") term: String,
+            @Query("limit") limit: Int,
             @Query("location") location: String) : Call<YelpSearchResult>
+
 
 }

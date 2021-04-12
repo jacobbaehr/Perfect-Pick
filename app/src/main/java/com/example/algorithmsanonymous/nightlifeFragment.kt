@@ -13,30 +13,16 @@ import kotlinx.android.synthetic.main.fragment_search.button
 
 
 @Suppress("DEPRECATION")
-class restarauntFragment : Fragment() {
+class nightlifeFragment : Fragment() {
 
-
-//    lateinit var nView: View
-//    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-//                              savedInstanceState: Bundle?): View? {
-//
-//        // Inflate current fragment
-//        nView = inflater.inflate(R.layout.fragment_restaraunt, container, false)
-//
-//        // Set button listeners and define actions for button press
-//        nView.button.setOnClickListener {
-//            view?.findNavController()?.navigate(R.id.action_restarauntFragment_to_resultsFragment)
-//        }
-//        return nView
-//    }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restaraunt, container, false)
+        return inflater.inflate(R.layout.fragment_nightlife, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

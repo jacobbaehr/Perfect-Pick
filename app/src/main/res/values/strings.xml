@@ -12,8 +12,19 @@
     <string name="search">search</string>
     <string name="favorites">favorites</string>
     <string name="profile">profile</string>
-    <string name="food_type">Food Type</string>
-    <string name="zip_code">Zip Code</string>
+    <string name="restaurant">Restaurant Picker</string>
+    <string name="nightlife">Nightlife Picker</string>
+    <string name="activity">Activity Picker</string>
+    <string name="food_type">Enter Cuisine Type (Italian, Mexican, etc.)</string>
+    <string name="night_type">Enter Any Specifications (Club, Bar, etc.)</string>
+    <string name="activity_type">Enter Any Specifications (Hiking, Games, etc.)</string>
+    <string name="zip_code">Enter 5 Digit Zip Code</string>
+    <string name="dollar_sign">Select the number of dollar signs:</string>
+    <string name="one_dollar_sign">$</string>
+    <string name="two_dollar_sign">$$</string>
+    <string name="three_dollar_sign">$$$</string>
+    <string name="four_dollar_sign">$$$$</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nightlife_fragment">Nightlife Fragment</string>

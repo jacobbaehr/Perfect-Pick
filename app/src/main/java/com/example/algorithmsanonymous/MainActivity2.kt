@@ -3,8 +3,6 @@ package com.example.algorithmsanonymous
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +19,10 @@ private const val BASE_URL = "https://api.yelp.com/v3/"
 private const val API_KEY = "ByqULIICRmITM2YWyQrSKQdiEIzLk413fhmf1x-LQ7Sm7PiJb_qUv8Az2GzFaZ-Q8tPGRPMGkmxAomXlg0oaNgfEJMa7yDFUUgsQe3rIg1PzmUy_zRCWxhi5EYRPYHYx"
 
 class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
+    private var search_term: String = "Restaurant"
+    private var search_location: String = "33801"
+    private var search_dollars: String = "1,2,3,4"
+
     val places = mutableListOf<YelpPlaces>()
     val adapter = PlacesAdapter(this, places, this)
 
@@ -57,7 +59,7 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         val yelpService = retrofit.create(YelpService::class.java)
-        yelpService.search("Bearer $API_KEY","Bar", "Lakeland").enqueue(object : Callback<YelpSearchResult> {
+        yelpService.search("Bearer $API_KEY", search_term, 10, search_location).enqueue(object : Callback<YelpSearchResult> {
 
 
             override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
@@ -69,6 +71,7 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
                 }
                 places.addAll(body.places)
                 adapter.notifyDataSetChanged()
+
             }
 
             override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
@@ -76,37 +79,6 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
             }
         })
 
-    }
-
-    fun searchAPI() {
-        val places = mutableListOf<YelpPlaces>()
-        val adapter = PlacesAdapter(this, places, this)
-        rvPlaces.adapter = adapter
-        rvPlaces.layoutManager = LinearLayoutManager(this)
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val yelpService = retrofit.create(YelpService::class.java)
-        yelpService.search("Bearer $API_KEY","Bar", "Lakeland").enqueue(object : Callback<YelpSearchResult> {
-
-
-            override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
-                Log.i(TAG, "onResponse $response")
-                val body = response.body()
-                if (body == null) {
-                    Log.w(TAG, "Did not receive valid response body from Yelp API... exiting")
-                    return
-                }
-                places.addAll(body.places)
-                adapter.notifyDataSetChanged()
-            }
-
-            override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
-                Log.i(TAG, "onFailure $t")
-            }
-        })
     }
 
     //Method for when restaurants are clicked sending them to details page

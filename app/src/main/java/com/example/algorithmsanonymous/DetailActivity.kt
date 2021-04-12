@@ -43,8 +43,8 @@ class DetailActivity : AppCompatActivity() {
         val tvCategory2: TextView = findViewById(R.id.tvCategory2)
         val mapView2: ImageView = findViewById(R.id.mapView2)
 
-        //temporary val
-        val url2 = "https://i.stack.imgur.com/AGv0f.png"
+        //temporary map val
+        val url2 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXFT9i-PYv2LqpQaF3asNIWKjKnGWA8BDa9w&usqp=CAU"
 
         Picasso.get().load(url).resize(420, 250).centerCrop().into(imageView2);
         tvName2.text = name
@@ -53,7 +53,7 @@ class DetailActivity : AppCompatActivity() {
         tvAddress2.text = "$address -"
         ratingBar2.rating = rating.toFloat()
         tvCategory2.text = categories
-        Picasso.get().load(url2).resize(400, 250).centerCrop().into(mapView2);
+        Picasso.get().load(url2).resize(410, 250).centerCrop().into(mapView2);
 
 
     }
