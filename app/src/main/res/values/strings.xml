@@ -18,4 +18,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nightlife_fragment">Nightlife Fragment</string>
     <string name="activity_fragment">Activity Fragment</string>
+    <string name="start">start</string>
+    <string name="spin">Pick From Favorites!</string>
+    <string name="pick">Pick for Me!</string>
 </resources>

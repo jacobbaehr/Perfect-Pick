@@ -2,6 +2,7 @@ package com.example.algorithmsanonymous
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -49,6 +50,23 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
 
 //        val places = mutableListOf<YelpPlaces>()
 //        val adapter = PlacesAdapter(this, places)
+
+        var pick: Button = findViewById(R.id.pick)
+
+        pick.setOnClickListener {
+            val wheelIntent = Intent(this, WheelActivity::class.java)
+            wheelIntent.putParcelableArrayListExtra("places", ArrayList(places))
+
+//            wheelIntent.putExtra("places0", places?.get(0))
+//            wheelIntent.putExtra("places1", places?.get(1))
+//            wheelIntent.putExtra("places2", places?.get(2))
+//            wheelIntent.putExtra("places3", places?.get(3))
+//            wheelIntent.putExtra("places4", places?.get(4))
+//            wheelIntent.putExtra("places5", places?.get(5))
+
+            startActivity(wheelIntent)
+        }
+
         rvPlaces.adapter = adapter
         rvPlaces.layoutManager = LinearLayoutManager(this)
 
@@ -101,6 +119,7 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
                 }
                 places.addAll(body.places)
                 adapter.notifyDataSetChanged()
+
             }
 
             override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
@@ -108,6 +127,8 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
             }
         })
     }
+
+
 
     //Method for when restaurants are clicked sending them to details page
     override fun onItemClick(position: Int) {
@@ -132,10 +153,10 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
     }
 
     // PURPOSE: Creation of fragments
-    private fun makeCurrentFragment(fragment: Fragment) =
-            supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fl_wrapper, fragment)
-                commit()
-            }
+//    private fun makeCurrentFragment(fragment: Fragment) =
+//            supportFragmentManager.beginTransaction().apply {
+//                replace(R.id.fl_wrapper, fragment)
+//                commit()
+//            }
 
 }

@@ -88,4 +88,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'com.android.support:multidex:1.0.3'
 
+    // Wheel
+    implementation 'com.github.mmoamenn:LuckyWheel_Android:0.3.0'
+
 }
