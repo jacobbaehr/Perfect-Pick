@@ -78,7 +78,7 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         val yelpService = retrofit.create(YelpService::class.java)
-        yelpService.search("Bearer $API_KEY", search_term, 10, search_location).enqueue(object : Callback<YelpSearchResult> {
+        yelpService.search("Bearer $API_KEY", search_term, 10, search_dollars, search_location).enqueue(object : Callback<YelpSearchResult> {
 
 
             override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {

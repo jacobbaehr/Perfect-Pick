@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
@@ -28,6 +29,9 @@ class activityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val inputSpecify = requireView().findViewById<EditText>(R.id.activityType)
+        val inputZip = requireView().findViewById<EditText>(R.id.zipCode)
+
         chipGroup.forEach { child ->
             (child as? Chip)?.setOnCheckedChangeListener { _, _ ->
                 registerFilterChanged()
@@ -36,6 +40,9 @@ class activityFragment : Fragment() {
 
         // Set button listener, execute action inside if applicable
         button.setOnClickListener {
+
+            val sendInput = inputSpecify.text.toString()
+            val sendZip = inputZip.text.toString()
 
             // Example of how to make transaction without method call
             val fr = fragmentManager?.beginTransaction()
