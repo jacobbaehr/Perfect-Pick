@@ -20,10 +20,7 @@ private const val TAG = "MainActivity"
 private const val BASE_URL = "https://api.yelp.com/v3/"
 private const val API_KEY = "ByqULIICRmITM2YWyQrSKQdiEIzLk413fhmf1x-LQ7Sm7PiJb_qUv8Az2GzFaZ-Q8tPGRPMGkmxAomXlg0oaNgfEJMa7yDFUUgsQe3rIg1PzmUy_zRCWxhi5EYRPYHYx"
 
-class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
-    private var search_term: String = "Restaurant"
-    private var search_location: String = "33801"
-    private var search_dollars: String = "1,2,3,4"
+class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
 
     val places = mutableListOf<YelpPlaces>()
     val adapter = PlacesAdapter(this, places, this)
@@ -32,28 +29,12 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
+        val intent = intent
+        val term = intent.getStringExtra("INPUT_1")
+        val location = intent.getStringExtra("INPUT_2")
+        val dollars = intent.getStringExtra("INPUT_3")
 
-//        // Create val for each fragment
-//        val searchFragment = SearchFragment()
-//        val favoritesFragment = FavoritesFragment()
-//        val profileFragment = ProfileFragment()
-//
-//        // ---------------------
-//        // Bottom navigation bar
-//        // ---------------------
-//        bottom_navigation.setOnNavigationItemSelectedListener {
-//            when (it.itemId) {
-//                R.id.nav_search -> makeCurrentFragment(searchFragment)
-//                R.id.nav_favorites -> makeCurrentFragment(favoritesFragment)
-//                R.id.nav_profile -> makeCurrentFragment(profileFragment)
-//            }
-//            true
-//        }
-
-
-//        val places = mutableListOf<YelpPlaces>()
-//        val adapter = PlacesAdapter(this, places)
-
+        //Spin the wheel
         var pick: Button = findViewById(R.id.pick)
 
         pick.setOnClickListener {
@@ -78,7 +59,7 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         val yelpService = retrofit.create(YelpService::class.java)
-        yelpService.search("Bearer $API_KEY", search_term, 10, search_dollars, search_location).enqueue(object : Callback<YelpSearchResult> {
+        yelpService.search("Bearer $API_KEY", term!!, 10, dollars!!, location!!).enqueue(object : Callback<YelpSearchResult> {
 
 
             override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {

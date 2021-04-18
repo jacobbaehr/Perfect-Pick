@@ -1,11 +1,11 @@
 package com.example.algorithmsanonymous
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Toast
 import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
@@ -43,11 +43,27 @@ class activityFragment : Fragment() {
 
             val sendInput = inputSpecify.text.toString()
             val sendZip = inputZip.text.toString()
+            val sendDollar = registerFilterChanged()
 
-            // Example of how to make transaction without method call
-            val fr = fragmentManager?.beginTransaction()
-            fr?.replace(R.id.fl_wrapper, ResultsFragment())
-            fr?.commit()
+            val i = Intent(activity, MainActivity2 ::class.java)
+
+            i.putExtra("INPUT_1", sendInput)
+            i.putExtra("INPUT_2", sendZip)
+            i.putExtra("INPUT_3", sendDollar)
+
+            // Transfer to MainActivity2 (API Code to display results)
+            this.startActivity(i)
+
+            //keeping for later reference this is how fragment data is passed
+//            val bundle = Bundle()
+//            bundle.putString("INPUT1", sendInput)
+//            val fragobj = ResultsFragment()
+//            fragobj.arguments = bundle
+
+            // Example of how to make transaction without method call  - THIS GOES TO RESULTS
+//            val fr = fragmentManager?.beginTransaction()
+//            fr?.replace(R.id.fl_wrapper, ResultsFragment())
+//            fr?.commit()
         }
     }
 
@@ -61,22 +77,36 @@ class activityFragment : Fragment() {
 
 
     // Get $ for restaurant
-    private fun registerFilterChanged() {
+    private fun registerFilterChanged(): String {
         val ids = chipGroup.checkedChipIds
 
         val titles = mutableListOf<CharSequence>()
 
         ids.forEach { id ->
-            titles.add(chipGroup.findViewById<Chip>(id).text)
+            if (chipGroup.findViewById<Chip>(id).text == "$") {
+                titles.add("1")
+            }
+            if (chipGroup.findViewById<Chip>(id).text == "$$") {
+                titles.add("2")
+            }
+            if (chipGroup.findViewById<Chip>(id).text == "$$$") {
+                titles.add("3")
+            }
+            if (chipGroup.findViewById<Chip>(id).text == "$$$$") {
+                titles.add("4")
+            }
+
+            //titles.add(chipGroup.findViewById<Chip>(id).text)
         }
 
         val text = if (titles.isNotEmpty()) {
             titles.joinToString(", ")
         } else {
-            "No Choice"
+            ""
         }
 
-        Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
+        return text
+        //Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
     }
 
 
