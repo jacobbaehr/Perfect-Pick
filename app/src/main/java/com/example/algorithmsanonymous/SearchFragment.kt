@@ -1,24 +1,20 @@
 package com.example.algorithmsanonymous
 
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.navigation.findNavController
-import kotlinx.android.synthetic.main.fragment_restaraunt.*
+import android.graphics.drawable.AnimationDrawable
 import kotlinx.android.synthetic.main.fragment_search.*
-import kotlinx.android.synthetic.main.fragment_search.view.*
-
+import kotlinx.android.synthetic.main.item_place.*
 
 @Suppress("DEPRECATION")
 class SearchFragment : Fragment() {
+
+        private lateinit var imgAnimation: AnimationDrawable
 
         override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +27,14 @@ class SearchFragment : Fragment() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
+
+            val ss = view.findViewById<ImageView>(R.id.imageSlideshow).apply {
+                setBackgroundResource(R.drawable.slideshow)
+                imgAnimation = background as AnimationDrawable
+            }
+
+            imgAnimation.start()
+
 
             // Set button listener, execute action inside if applicable
             RestaurantButton.setOnClickListener {
