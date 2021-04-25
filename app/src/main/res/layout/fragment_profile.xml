@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.001">
 
-        <TextView
+        <EditText
             android:id="@+id/name_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:layout_marginTop="60dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="sans-serif-condensed-medium"
-            android:text="Jacob Baehr"
+            android:text="YOUR NAME"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="25sp"
@@ -67,27 +67,27 @@
         app:layout_constraintTop_toBottomOf="@+id/user_imageview"
         app:layout_constraintVertical_bias="0.038">
 
-        <TextView
+        <EditText
             android:id="@+id/occupation_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:textColor="@color/white"
-            android:text="Tennis Prodigy"
+            android:text="YOUR TITLE"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <EditText
             android:id="@+id/workplace_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:textColor="@color/white"
-            android:text="Florida Southern College"
+            android:text="YOUR SCHOOL"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -120,7 +120,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/workplace_textview"/>
 <!--                app:srcCompat="@drawable/ic_mail_black_24dp" />-->
 
-            <TextView
+            <EditText
                 android:id="@+id/email_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/email_imageview"/>
 <!--                app:srcCompat="@drawable/ic_local_phone_black_24dp" />-->
 
-            <TextView
+            <EditText
                 android:id="@+id/phone_textview"
                 android:layout_width="239dp"
                 android:layout_height="wrap_content"
@@ -205,7 +205,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/phone_imageview"/>
 <!--                app:srcCompat="@drawable/ic_videocam_white_24dp" />-->
 
-            <TextView
+            <EditText
                 android:id="@+id/video_textview"
                 android:layout_width="242dp"
                 android:layout_height="wrap_content"
@@ -248,7 +248,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/video_textview"/>
 <!--                app:srcCompat="@drawable/ic_icon_facebook" />-->
 
-            <TextView
+            <EditText
                 android:id="@+id/facebook_textview"
                 android:layout_width="336dp"
                 android:layout_height="wrap_content"
@@ -290,7 +290,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/facebook_textview"/>
 <!--                app:srcCompat="@drawable/ic_twitter_white" />-->
 
-            <TextView
+            <EditText
                 android:id="@+id/twitter_textview"
                 android:layout_width="336dp"
                 android:layout_height="wrap_content"
@@ -308,4 +308,5 @@
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,8 +11,11 @@
         android:label="fragment_restaraunt"
         tools:layout="@layout/fragment_restaraunt" >
         <action
-            android:id="@+id/action_restarauntFragment_to_resultsFragment"
-            app:destination="@id/resultsFragment" />
+            android:id="@+id/action_restarauntFragment_to_mainActivity2"
+            app:destination="@id/mainActivity2" />
+        <action
+            android:id="@+id/action_restarauntFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -34,8 +37,11 @@
         android:label="fragment_nightlife"
         tools:layout="@layout/fragment_nightlife" >
         <action
-            android:id="@+id/action_nightlifeFragment_to_resultsFragment"
-            app:destination="@id/resultsFragment" />
+            android:id="@+id/action_nightlifeFragment_to_mainActivity2"
+            app:destination="@id/mainActivity2" />
+        <action
+            android:id="@+id/action_nightlifeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/activityFragment"
@@ -43,12 +49,27 @@
         android:label="fragment_activity"
         tools:layout="@layout/fragment_activity" >
         <action
-            android:id="@+id/action_activityFragment_to_resultsFragment"
-            app:destination="@id/resultsFragment" />
+            android:id="@+id/action_activityFragment_to_mainActivity2"
+            app:destination="@id/mainActivity2" />
+        <action
+            android:id="@+id/action_activityFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/resultsFragment"
-        android:name="com.example.algorithmsanonymous.ResultsFragment"
-        android:label="fragment_results"
-        tools:layout="@layout/fragment_results" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main">
+        <action
+            android:id="@+id/action_mainActivity_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </activity>
+    <activity
+        android:id="@+id/mainActivity2"
+        android:name="com.example.algorithmsanonymous.MainActivity2"
+        android:label="activity_main2"
+        tools:layout="@layout/activity_main2" >
+        <action
+            android:id="@+id/action_mainActivity2_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </activity>
 </navigation>
