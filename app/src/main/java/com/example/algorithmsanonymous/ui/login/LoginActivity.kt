@@ -10,10 +10,7 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -24,10 +21,8 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.IgnoreExtraProperties
-import kotlinx.android.synthetic.main.activity_login.*
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_detail.*
 
 
 class LoginActivity: AppCompatActivity() {
@@ -48,7 +43,7 @@ class LoginActivity: AppCompatActivity() {
 
 
     private lateinit var loginViewModel: LoginViewModel
-    private var mAuth: FirebaseAuth? = null
+
 
     // Write a message to the database
 
@@ -62,7 +57,7 @@ class LoginActivity: AppCompatActivity() {
 
 
         auth = FirebaseAuth.getInstance()
-
+         progressBar = findViewById<ProgressBar>(R.id.loading) as ProgressBar
 
 
         //setContentView(R.layout.activity_main)
@@ -142,6 +137,9 @@ class LoginActivity: AppCompatActivity() {
                 false
             }
 
+
+
+
             login.setOnClickListener {
 
                 loading.visibility = View.VISIBLE
@@ -159,6 +157,8 @@ class LoginActivity: AppCompatActivity() {
 
                 }
 
+
+
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(applicationContext, "Enter password!", Toast.LENGTH_SHORT)
                         .show()
@@ -174,26 +174,33 @@ class LoginActivity: AppCompatActivity() {
 
                 }
 
+
+
+
+
+
                 auth.createUserWithEmailAndPassword(email1, password)
                     .addOnCompleteListener(
 
                         this@LoginActivity,
                         OnCompleteListener<AuthResult?> { task ->
-                            Toast.makeText(
-                                this@LoginActivity,
-                                "createUserWithEmail:onComplete:" + task.isSuccessful,
-                                Toast.LENGTH_SHORT
-                            ).show()
+//                            Toast.makeText(
+//                                this@LoginActivity,
+//                                "createUserWithEmail:onComplete:" + task.isSuccessful,
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+                            Toast.makeText(this@LoginActivity, email1, Toast.LENGTH_SHORT).show()
 
                             // If sign in fails, display a message to the user. If sign in succeeds
                             // the auth state listener will be notified and logic to handle the
                             // signed in user can be handled in the listener.
                             if (!task.isSuccessful) {
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    "Authentication passed." + task.isSuccessful,
-                                    Toast.LENGTH_SHORT
-                                ).show()
+//                                Toast.makeText(
+//                                    this@LoginActivity,
+//                                     + task.isSuccessful,
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
+                                Toast.makeText(this@LoginActivity, email1, Toast.LENGTH_SHORT).show()
                                 auth.signInWithEmailAndPassword(email1, password)
                                         .addOnCompleteListener(this@LoginActivity) { task ->
                                             // If sign in fails, display a message to the user. If sign in succeeds
@@ -201,6 +208,7 @@ class LoginActivity: AppCompatActivity() {
                                             // signed in user can be handled in the listener.
                                             progressBar.visibility = View.GONE
                                             if (!task.isSuccessful) {
+
                                                 // there was an error
                                                 if (password.length < 6) {
 
@@ -208,9 +216,11 @@ class LoginActivity: AppCompatActivity() {
 //                                                    Toast.makeText(this@LoginActivity, getString(R.string.auth_failed), Toast.LENGTH_LONG).show()
                                                 }
                                             } else {
+
                                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                                 startActivity(intent)
                                                 finish()
+
                                             }
                                         }
                             } else {
@@ -219,11 +229,14 @@ class LoginActivity: AppCompatActivity() {
                             }
 
                         })
-                writeNewUser("1", username.toString(), email1)
+                writeNewUser(username.toString(), email1)
 
             }
 
+
+
         }
+
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
@@ -260,36 +273,48 @@ class LoginActivity: AppCompatActivity() {
     }
 
 
-    private fun createAccount(email: String, password: String, name: String, mobile: String) {
+//    private fun createAccount(email: String, password: String, name: String, mobile: String) {
+//
+//        mAuth!!.createUserWithEmailAndPassword(email, attr.password.toString())
+//                .addOnCompleteListener(this) { task ->
+//
+//
+//                    if (task.isSuccessful) {
+//                        // Sign in success, update UI with the signed-in user's information
+//
+//                        val user = mAuth!!.currentUser
+//                        updateUiWithUser(user)
+//                    }
+//
+//                    // ...
+//                }
+//
+//    }
+    fun writeNewUserFavorite( name: String, email: String) {
+        var user:FirebaseUser?= auth.currentUser;
+        var uid = user?.uid;
+        var uidString = uid.toString()
+        var myRef1: DatabaseReference = database!!.getReference(uidString)
 
-        mAuth!!.createUserWithEmailAndPassword(email, attr.password.toString())
-                .addOnCompleteListener(this) { task ->
+        var post1 = uid?.let { myRef1.child("favorites").child("favorite").child(it).setValue("favorite") }
 
-
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-
-                        val user = mAuth!!.currentUser
-                        updateUiWithUser(user)
-                    }
-
-                    // ...
-                }
 
     }
 
-    fun writeNewUser(userId: String, name: String, email: String) {
-
-        var myRef1: DatabaseReference = database!!.getReference("message")
-        var myRef2: DatabaseReference = database!!.getReference("message")
-        var myRef3: DatabaseReference = database!!.getReference("message")
-        var myRef4: DatabaseReference = database!!.getReference("message")
-        var myRef5: DatabaseReference = database!!.getReference("message")
-        var post1 = myRef1.child("friends").child("email").child(userId).setValue(email)
-        var post2 = myRef2.child("friends").child("friend2").child(userId).setValue("Jimo")
-        var post3 = myRef3.child("friends").child("friend3").child(userId).setValue("Jim")
-        var post4 = myRef4.child("friends").child("friend4").child(userId).setValue("Jimtron")
-        var post5 = myRef5.child("friends").child("friend1").child(userId).setValue("Jimtron7")
+    fun writeNewUser( name: String, email: String) {
+        var user:FirebaseUser?= auth.currentUser;
+        var uid=user?.uid;
+        var uidString = uid.toString()
+        var myRef1: DatabaseReference = database!!.getReference(uidString)
+        var myRef2: DatabaseReference = database!!.getReference(uidString)
+        var myRef3: DatabaseReference = database!!.getReference(uidString)
+        var myRef4: DatabaseReference = database!!.getReference(uidString)
+        var myRef5: DatabaseReference = database!!.getReference(uidString)
+        var post1 = uid?.let { myRef1.child("friends").child("email").child(it).setValue(email) }
+        var post2 = uid?.let { myRef2.child("friends").child("friend2").child(it).setValue("Jimo") }
+        var post3 = uid?.let { myRef3.child("friends").child("friend3").child(it).setValue("Jim") }
+        var post4 = uid?.let { myRef4.child("friends").child("friend4").child(it).setValue("Jimtron") }
+        var post5 = uid?.let { myRef5.child("friends").child("friend1").child(it).setValue("Jimtron7") }
     }
 
 

@@ -1,27 +1,29 @@
 package com.example.algorithmsanonymous
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlin.reflect.KClass
 
 
 class DetailActivity : AppCompatActivity() {
+    lateinit var auth: FirebaseAuth
+    var database: FirebaseDatabase? = FirebaseDatabase.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+        auth = FirebaseAuth.getInstance()
 
-        // Create "listener" for favorites switch
-        favorite2.setOnCheckedChangeListener { _, isChecked ->
-
-            // do whatever you need to do when the switch is toggled
-            setContentView(R.layout.activity_main)
-        }
 
         val intent = intent
 
@@ -55,8 +57,33 @@ class DetailActivity : AppCompatActivity() {
         tvCategory2.text = categories
         Picasso.get().load(url2).resize(410, 250).centerCrop().into(mapView2);
 
+        var user: FirebaseUser?= auth.currentUser;
+        var uid=user?.uid;
+        var uidString = uid.toString()
+        // Create "listener" for favorites switch
+        favorite2.setOnCheckedChangeListener { _, isChecked ->
+
+            // do whatever you need to do when the switch is toggled
+            var user:FirebaseUser?= auth.currentUser;
+            var uid=user?.uid;
+            var uidString = uid.toString()
+            var myRef1: DatabaseReference = database!!.getReference(uidString)
+
+            if (name != null) {
+                myRef1.child("fav").child("favorites").child(name).setValue(name)
+            }
+
+        }
+
+
 
     }
 
+
+
+
+}
+
+private fun DataSnapshot.getValue(kClass: KClass<String>) {
 
 }
