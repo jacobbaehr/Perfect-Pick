@@ -60,25 +60,36 @@ class restarauntFragment : Fragment() {
             val sendZip = inputZip.text.toString()
             val sendDollar = registerFilterChanged()
 
-            val i = Intent(activity, MainActivity2 ::class.java)
+            if (sendInput.isEmpty() || sendZip.isEmpty()) {
+                if (sendInput.isEmpty()) {
+                    inputSpecify.error = "Please enter restaurant specifications."
+                }
+                else {
+                    inputZip.error = "Please enter zip code."
+                }
+            }
 
-            i.putExtra("INPUT_1", sendInput)
-            i.putExtra("INPUT_2", sendZip)
-            i.putExtra("INPUT_3", sendDollar)
+            else {
+                val i = Intent(activity, MainActivity2::class.java)
 
-            // Transfer to MainActivity2 (API Code to display results)
-            this.startActivity(i)
+                i.putExtra("INPUT_1", sendInput)
+                i.putExtra("INPUT_2", sendZip)
+                i.putExtra("INPUT_3", sendDollar)
 
-            //keeping for later reference this is how fragment data is passed
-//            val bundle = Bundle()
-//            bundle.putString("INPUT1", sendInput)
-//            val fragobj = ResultsFragment()
-//            fragobj.arguments = bundle
+                // Transfer to MainActivity2 (API Code to display results)
+                this.startActivity(i)
 
-            // Example of how to make transaction without method call  - THIS GOES TO RESULTS
-//            val fr = fragmentManager?.beginTransaction()
-//            fr?.replace(R.id.fl_wrapper, ResultsFragment())
-//            fr?.commit()
+                //keeping for later reference this is how fragment data is passed
+                //            val bundle = Bundle()
+                //            bundle.putString("INPUT1", sendInput)
+                //            val fragobj = ResultsFragment()
+                //            fragobj.arguments = bundle
+
+                // Example of how to make transaction without method call  - THIS GOES TO RESULTS
+                //            val fr = fragmentManager?.beginTransaction()
+                //            fr?.replace(R.id.fl_wrapper, ResultsFragment())
+                //            fr?.commit()
+            }
         }
     }
 
@@ -117,7 +128,7 @@ class restarauntFragment : Fragment() {
         val text = if (titles.isNotEmpty()) {
             titles.joinToString(", ")
         } else {
-            "No Choice"
+            ""
         }
 
         return text

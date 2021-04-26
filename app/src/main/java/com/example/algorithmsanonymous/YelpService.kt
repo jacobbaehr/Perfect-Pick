@@ -17,5 +17,13 @@ public interface YelpService {
             @Query("price") price: String,
             @Query("location") location: String) : Call<YelpSearchResult>
 
+    @GET("businesses/search")
+    fun search2 (
+
+        @Header("Authorization") authHeader: String,
+        @Query("term") term: String,
+        @Query("limit") limit: Int,
+        @Query("location") location: String) : Call<YelpSearchResult>
+
 
 }

@@ -55,6 +55,7 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
         val location = intent.getStringExtra("INPUT_2")
         val dollars = intent.getStringExtra("INPUT_3")
 
+
         //Spin the wheel
         var pick: Button = findViewById(R.id.pick)
 
@@ -80,25 +81,58 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         val yelpService = retrofit.create(YelpService::class.java)
-        yelpService.search("Bearer $API_KEY", term!!, 10, dollars!!, location!!).enqueue(object : Callback<YelpSearchResult> {
 
 
-            override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
-                Log.i(TAG, "onResponse $response")
-                val body = response.body()
-                if (body == null) {
-                    Log.w(TAG, "Did not receive valid response body from Yelp API... exiting")
-                    return
+        if (dollars == ""){
+            yelpService.search2("Bearer $API_KEY", term!!, 10, location!!).enqueue(object : Callback<YelpSearchResult> {
+
+
+                override fun onResponse(call: Call<YelpSearchResult>, response: Response<YelpSearchResult>) {
+                    Log.i(TAG, "onResponse $response")
+                    val body = response.body()
+                    if (body == null) {
+                        Log.w(TAG, "Did not receive valid response body from Yelp API... exiting")
+                        return
+                    }
+                    places.addAll(body.places)
+                    adapter.notifyDataSetChanged()
+
                 }
-                places.addAll(body.places)
-                adapter.notifyDataSetChanged()
 
-            }
+                override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
+                    Log.i(TAG, "onFailure $t")
+                }
+            })
+        }
 
-            override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
-                Log.i(TAG, "onFailure $t")
-            }
-        })
+        else {
+            yelpService.search("Bearer $API_KEY", term!!, 10, dollars!!, location!!)
+                .enqueue(object : Callback<YelpSearchResult> {
+
+
+                    override fun onResponse(
+                        call: Call<YelpSearchResult>,
+                        response: Response<YelpSearchResult>
+                    ) {
+                        Log.i(TAG, "onResponse $response")
+                        val body = response.body()
+                        if (body == null) {
+                            Log.w(
+                                TAG,
+                                "Did not receive valid response body from Yelp API... exiting"
+                            )
+                            return
+                        }
+                        places.addAll(body.places)
+                        adapter.notifyDataSetChanged()
+
+                    }
+
+                    override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
+                        Log.i(TAG, "onFailure $t")
+                    }
+                })
+        }
 
     }
 
