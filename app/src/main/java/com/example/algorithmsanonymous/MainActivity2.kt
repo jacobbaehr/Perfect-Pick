@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -36,6 +37,7 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
         val searchFragment = SearchFragment()
         val favoritesFragment = FavoritesFragment()
         val profileFragment = ProfileFragment()
+
 
         // ---------------------
         // Bottom navigation bar
@@ -82,6 +84,12 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
                 .build()
         val yelpService = retrofit.create(YelpService::class.java)
 
+        // visibility fo fields
+        val pickTest: Button = findViewById<Button>(R.id.pick)
+        pickTest.visibility = View.VISIBLE
+        val empty: TextView = findViewById(R.id.noResults)
+        empty.visibility = View.INVISIBLE
+
 
         if (dollars == ""){
             yelpService.search2("Bearer $API_KEY", term!!, 10, location!!).enqueue(object : Callback<YelpSearchResult> {
@@ -96,6 +104,14 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
                     }
                     places.addAll(body.places)
                     adapter.notifyDataSetChanged()
+
+                    if (places == null || places.isEmpty()) {
+                        //val pickTest: Button = findViewById<Button>(R.id.pick)
+                        pickTest.visibility = View.INVISIBLE
+
+                        //val empty: TextView = findViewById(R.id.noResults)
+                        empty.visibility = View.VISIBLE
+                    }
 
                 }
 
@@ -126,6 +142,14 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
                         places.addAll(body.places)
                         adapter.notifyDataSetChanged()
 
+                        if (places == null || places.isEmpty()) {
+                            //val pickTest: Button = findViewById<Button>(R.id.pick)
+                            pickTest.visibility = View.INVISIBLE
+
+                            //val empty: TextView = findViewById(R.id.noResults)
+                            empty.visibility = View.VISIBLE
+                        }
+
                     }
 
                     override fun onFailure(call: Call<YelpSearchResult>, t: Throwable) {
@@ -133,6 +157,7 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
                     }
                 })
         }
+
 
     }
 
