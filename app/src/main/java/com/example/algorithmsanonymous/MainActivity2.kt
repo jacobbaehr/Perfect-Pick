@@ -38,7 +38,6 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
         val favoritesFragment = FavoritesFragment()
         val profileFragment = ProfileFragment()
 
-
         // ---------------------
         // Bottom navigation bar
         // ---------------------
@@ -57,23 +56,6 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
         val location = intent.getStringExtra("INPUT_2")
         val dollars = intent.getStringExtra("INPUT_3")
 
-
-        //Spin the wheel
-        var pick: Button = findViewById(R.id.pick)
-
-        pick.setOnClickListener {
-            val wheelIntent = Intent(this, WheelActivity::class.java)
-            wheelIntent.putParcelableArrayListExtra("places", ArrayList(places))
-
-//            wheelIntent.putExtra("places0", places?.get(0))
-//            wheelIntent.putExtra("places1", places?.get(1))
-//            wheelIntent.putExtra("places2", places?.get(2))
-//            wheelIntent.putExtra("places3", places?.get(3))
-//            wheelIntent.putExtra("places4", places?.get(4))
-//            wheelIntent.putExtra("places5", places?.get(5))
-
-            startActivity(wheelIntent)
-        }
 
         rvPlaces.adapter = adapter
         rvPlaces.layoutManager = LinearLayoutManager(this)
@@ -156,6 +138,31 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
                         Log.i(TAG, "onFailure $t")
                     }
                 })
+        }
+
+        //Spin the wheel
+        var pick: Button = findViewById(R.id.pick)
+
+        pick.setOnClickListener {
+            val wheelIntent = Intent(this, WheelActivity::class.java)
+            //wheelIntent.putParcelableArrayListExtra("places", ArrayList(places))
+
+            wheelIntent.putExtra("places1", places[0].name)
+            wheelIntent.putExtra("places2", places[1].name)
+            wheelIntent.putExtra("places3", places[2].name)
+            wheelIntent.putExtra("places4", places[3].name)
+            wheelIntent.putExtra("places5", places[4].name)
+            wheelIntent.putExtra("places6", places[5].name)
+
+
+//            wheelIntent.putExtra("places0", places?.get(0))
+//            wheelIntent.putExtra("places1", places?.get(1))
+//            wheelIntent.putExtra("places2", places?.get(2))
+//            wheelIntent.putExtra("places3", places?.get(3))
+//            wheelIntent.putExtra("places4", places?.get(4))
+//            wheelIntent.putExtra("places5", places?.get(5))
+
+            startActivity(wheelIntent)
         }
 
 

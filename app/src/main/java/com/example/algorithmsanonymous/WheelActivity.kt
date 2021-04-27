@@ -24,36 +24,46 @@ class WheelActivity: AppCompatActivity() {
 
         val intent = intent
 
-        val places = intent.getStringArrayListExtra("places")
+        val place1 = intent.getStringExtra("places1")
+        val place2 = intent.getStringExtra("places2")
+        val place3 = intent.getStringExtra("places3")
+        val place4 = intent.getStringExtra("places4")
+        val place5 = intent.getStringExtra("places5")
+        val place6 = intent.getStringExtra("places6")
+
+        //val places = intent.getStringArrayListExtra("places")
 
         var lw: LuckyWheel = findViewById(R.id.lwv)
 
         val wheelItems: MutableList<WheelItem> = ArrayList()
 
-        wheelItems.add(WheelItem(
-            Color.LTGRAY,
+        wheelItems.add(WheelItem(Color.parseColor("#00c4cc"),
             BitmapFactory.decodeResource(resources, R.drawable.ic_action_name),
-            places?.get(0)))
+            place1))
 
-        wheelItems.add(WheelItem(Color.BLUE,
+        wheelItems.add(WheelItem(Color.parseColor("#004c4f"),
             BitmapFactory.decodeResource(resources, R.drawable.ic_action_name),
-            places?.get(1)))
+            place2))
 
-        wheelItems.add(WheelItem(Color.BLACK,
+        wheelItems.add(WheelItem(Color.parseColor("#00c4cc"),
             BitmapFactory.decodeResource(resources, R.drawable.ic_action_name),
-            places?.get(2)))
+            place3))
 
-        wheelItems.add(WheelItem(Color.GRAY,
+        wheelItems.add(WheelItem(Color.parseColor("#004c4f"),
             BitmapFactory.decodeResource(resources, R.drawable.ic_action_name)
-            ,places?.get(3)))
+            ,place4))
 
-        wheelItems.add(WheelItem(Color.RED,
+        wheelItems.add(WheelItem(Color.parseColor("#00c4cc"),
             BitmapFactory.decodeResource(resources, R.drawable.ic_action_name),
-            places?.get(4)))
+            place5))
 
-        wheelItems.add(WheelItem(Color.BLACK,
-            BitmapFactory.decodeResource(resources, R.drawable.ic_action_name),
-            places?.get(5)))
+        wheelItems.add(WheelItem(Color.parseColor("#004c4f"),
+            BitmapFactory.decodeResource(resources, R.drawable.ic_action_name)
+            ,place6))
+
+//        wheelItems.add(WheelItem(Color.BLACK,
+//            BitmapFactory.decodeResource(resources, R.drawable.ic_action_name),
+//            places?.get(5)))
 
         lw.addWheelItems(wheelItems)
 
