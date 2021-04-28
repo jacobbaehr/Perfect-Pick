@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.forEach
 import androidx.fragment.app.Fragment
 import com.google.android.material.chip.Chip
@@ -28,6 +29,12 @@ class nightlifeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val activityex = activity as AppCompatActivity?
+
+        activityex!!.getSupportActionBar()!!.setDisplayShowHomeEnabled(true);
+        activityex!!.getSupportActionBar()!!.setLogo(R.drawable.logo);
+        activityex!!.getSupportActionBar()!!.setDisplayUseLogoEnabled(true);
 
         val inputSpecify = requireView().findViewById<EditText>(R.id.nightType)
         val inputZip = requireView().findViewById<EditText>(R.id.zipCode)

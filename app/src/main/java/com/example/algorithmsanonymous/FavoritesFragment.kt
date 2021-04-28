@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -29,6 +30,12 @@ class FavoritesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val activityex = activity as AppCompatActivity?
+
+        activityex!!.getSupportActionBar()!!.setDisplayShowHomeEnabled(true);
+        activityex!!.getSupportActionBar()!!.setLogo(R.drawable.logo);
+        activityex!!.getSupportActionBar()!!.setDisplayUseLogoEnabled(true);
 
         spin.setOnClickListener {
             // Transfer to MainActivity2 (API Code to display results)

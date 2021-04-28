@@ -24,6 +24,10 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detail)
         auth = FirebaseAuth.getInstance()
 
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        supportActionBar!!.setLogo(R.drawable.logo)
+        supportActionBar!!.setDisplayUseLogoEnabled(true)
+
 
         val intent = intent
 
@@ -48,24 +52,24 @@ class DetailActivity : AppCompatActivity() {
         //temporary map val
         val url2 = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXFT9i-PYv2LqpQaF3asNIWKjKnGWA8BDa9w&usqp=CAU"
 
-        Picasso.get().load(url).resize(420, 250).centerCrop().into(imageView2);
+        Picasso.get().load(url).resize(420, 250).centerCrop().into(imageView2)
         tvName2.text = name
         tvNumReviews2.text = "$numrev Reviews"
         tvDistance2.text = "$distance Miles"
         tvAddress2.text = "$address -"
         ratingBar2.rating = rating.toFloat()
         tvCategory2.text = categories
-        Picasso.get().load(url2).resize(410, 250).centerCrop().into(mapView2);
+        Picasso.get().load(url2).resize(410, 250).centerCrop().into(mapView2)
 
-        var user: FirebaseUser?= auth.currentUser;
-        var uid=user?.uid;
+        var user: FirebaseUser?= auth.currentUser
+        var uid=user?.uid
         var uidString = uid.toString()
         // Create "listener" for favorites switch
         favorite2.setOnCheckedChangeListener { _, isChecked ->
 
             // do whatever you need to do when the switch is toggled
-            var user:FirebaseUser?= auth.currentUser;
-            var uid=user?.uid;
+            var user:FirebaseUser?= auth.currentUser
+            var uid=user?.uid
             var uidString = uid.toString()
             var myRef1: DatabaseReference = database!!.getReference(uidString)
 

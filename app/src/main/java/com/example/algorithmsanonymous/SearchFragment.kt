@@ -1,15 +1,15 @@
 package com.example.algorithmsanonymous
 
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import android.graphics.drawable.AnimationDrawable
 import kotlinx.android.synthetic.main.fragment_search.*
-import kotlinx.android.synthetic.main.item_place.*
 
 @Suppress("DEPRECATION")
 class SearchFragment : Fragment() {
@@ -27,6 +27,12 @@ class SearchFragment : Fragment() {
 
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
+
+            val activityex = activity as AppCompatActivity?
+
+            activityex!!.getSupportActionBar()!!.setDisplayShowHomeEnabled(true);
+            activityex!!.getSupportActionBar()!!.setLogo(R.drawable.logo);
+            activityex!!.getSupportActionBar()!!.setDisplayUseLogoEnabled(true);
 
             val ss = view.findViewById<ImageView>(R.id.imageSlideshow).apply {
                 setBackgroundResource(R.drawable.slideshow)

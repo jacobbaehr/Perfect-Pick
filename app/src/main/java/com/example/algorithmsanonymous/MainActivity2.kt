@@ -19,6 +19,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
+
 // Vals needed for API implementation
 private const val TAG = "MainActivity"
 private const val BASE_URL = "https://api.yelp.com/v3/"
@@ -32,6 +33,10 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
+
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        supportActionBar!!.setLogo(R.drawable.logo)
+        supportActionBar!!.setDisplayUseLogoEnabled(true)
 
         // Create val for each fragment on nav bar
         val searchFragment = SearchFragment()

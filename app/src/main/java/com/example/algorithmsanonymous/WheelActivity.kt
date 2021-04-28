@@ -6,21 +6,22 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-import com.bluehomestudio.luckywheel.LuckyWheel;
-import com.bluehomestudio.luckywheel.OnLuckyWheelReachTheTarget;
-import com.bluehomestudio.luckywheel.WheelItem;
+import com.bluehomestudio.luckywheel.LuckyWheel
+import com.bluehomestudio.luckywheel.OnLuckyWheelReachTheTarget
+import com.bluehomestudio.luckywheel.WheelItem
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-
+import java.util.ArrayList
+import java.util.List
 
 
 class WheelActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wheel)
+
+        supportActionBar!!.setDisplayShowHomeEnabled(true)
+        supportActionBar!!.setLogo(R.drawable.logo)
+        supportActionBar!!.setDisplayUseLogoEnabled(true)
 
         val intent = intent
 
