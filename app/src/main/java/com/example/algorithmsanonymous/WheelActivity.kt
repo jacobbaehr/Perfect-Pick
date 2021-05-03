@@ -72,7 +72,7 @@ class WheelActivity: AppCompatActivity() {
 
 
         start.setOnClickListener {
-            lw.rotateWheelTo((0..5).random())
+            lw.rotateWheelTo((0..6).random())
         }
 
 
