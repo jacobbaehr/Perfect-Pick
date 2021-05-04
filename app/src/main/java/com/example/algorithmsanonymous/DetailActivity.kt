@@ -32,6 +32,7 @@ class DetailActivity : AppCompatActivity() {
         val intent = intent
 
         val url = intent.getStringExtra("EX_URL")
+        val id = intent.getStringExtra("EX_ID")
         val name = intent.getStringExtra("EX_NAME")
         val address = intent.getStringExtra("EX_ADDRESS")
         val price = intent.getStringExtra("EX_PRICE")
@@ -73,8 +74,8 @@ class DetailActivity : AppCompatActivity() {
             var uidString = uid.toString()
             var myRef1: DatabaseReference = database!!.getReference(uidString)
 
-            if (name != null) {
-                myRef1.child("fav").child("favorites").child(name).setValue(name)
+            if (id != null) {
+                myRef1.child("fav").child("favorites").child(id).setValue(id)
             }
 
         }
