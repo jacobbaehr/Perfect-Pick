@@ -64,6 +64,8 @@ class FavoritesFragment : Fragment() {
 //                        var uid=user?.uid;
 //                        var uidString = uid.toString()
 //                        var myRef1: DatabaseReference = database!!.getReference(uidString)
+
+
 //
 //
 //                        myRef1.child("fav").child("favorites").child(grab).setValue(grab)

@@ -194,6 +194,7 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
         val distance = "%.2f".format(clickedItem.distanceInMeters * milesPerMeter)
 
         detailIntent.putExtra("EX_NAME", clickedItem.name)
+        detailIntent.putExtra("EX_ID", clickedItem.id)
         detailIntent.putExtra("EX_ADDRESS", clickedItem.location.address)
         detailIntent.putExtra("EX_PRICE", clickedItem.price)
         detailIntent.putExtra("EX_URL", clickedItem.imageUrl)
@@ -201,6 +202,7 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
         detailIntent.putExtra("EX_NUMREVIEWS", clickedItem.numReviews)
         detailIntent.putExtra("EX_RATING", clickedItem.rating)
         detailIntent.putExtra("EX_CATEGORIES", clickedItem.categories[0].title)
+
 
 
         startActivity(detailIntent)
