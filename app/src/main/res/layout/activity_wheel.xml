@@ -26,4 +26,5 @@
         android:textColor="@android:color/white"
         android:text="@string/start"/>
 
+
 </RelativeLayout>

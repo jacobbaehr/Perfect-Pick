@@ -152,12 +152,22 @@ class MainActivity2 : AppCompatActivity(), PlacesAdapter.OnItemClickListener{
             val wheelIntent = Intent(this, WheelActivity::class.java)
             //wheelIntent.putParcelableArrayListExtra("places", ArrayList(places))
 
+            // names of places
             wheelIntent.putExtra("places1", places[0].name)
             wheelIntent.putExtra("places2", places[1].name)
             wheelIntent.putExtra("places3", places[2].name)
             wheelIntent.putExtra("places4", places[3].name)
             wheelIntent.putExtra("places5", places[4].name)
             wheelIntent.putExtra("places6", places[5].name)
+
+            // images of places
+            wheelIntent.putExtra("places1imgurl", places[0].imageUrl)
+            wheelIntent.putExtra("places2imgurl", places[1].imageUrl)
+            wheelIntent.putExtra("places3imgurl", places[2].imageUrl)
+            wheelIntent.putExtra("places4imgurl", places[3].imageUrl)
+            wheelIntent.putExtra("places5imgurl", places[4].imageUrl)
+            wheelIntent.putExtra("places6imgurl", places[5].imageUrl)
+
 
 
 //            wheelIntent.putExtra("places0", places?.get(0))
