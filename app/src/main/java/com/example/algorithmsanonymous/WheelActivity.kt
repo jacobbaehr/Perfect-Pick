@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
@@ -118,11 +119,16 @@ class WheelActivity: AppCompatActivity() {
         var start: Button = findViewById(R.id.start)
 
 
+        val change: TextView = findViewById(R.id.result)
+
         start.setOnClickListener {
             val index = (0..5).random()
             lw.rotateWheelTo(index+1)
             lw.setLuckyWheelReachTheTarget {
-                Toast.makeText(applicationContext, places.get(index), Toast.LENGTH_LONG).show()
+                //Toast.makeText(applicationContext, places.get(index), Toast.LENGTH_LONG).show()
+                val text = places.get(index)
+                change.text = text
+
             }
         }
 

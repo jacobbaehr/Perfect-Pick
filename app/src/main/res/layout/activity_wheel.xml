@@ -1,30 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:LuckyWheel="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/background"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context="com.bluehomestudio.luckywheel.LuckyWheel">
 
     <com.bluehomestudio.luckywheel.LuckyWheel
         android:id="@+id/lwv"
-        android:layout_width="380dp"
-        android:layout_height="500dp"
-        android:layout_centerInParent="true"
+        android:layout_width="392dp"
+        android:layout_height="394dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="40dp"
+        LuckyWheel:arrow_image="@drawable/ic_baseline_keyboard_arrow_down_24"
         LuckyWheel:background_color="@color/light_teal"
-        LuckyWheel:arrow_image="@drawable/ic_baseline_keyboard_arrow_down_24" />
+        LuckyWheel:layout_constraintEnd_toEndOf="parent"
+        LuckyWheel:layout_constraintHorizontal_bias="0.473"
+        LuckyWheel:layout_constraintStart_toStartOf="parent"
+        LuckyWheel:layout_constraintTop_toTopOf="parent">
+
+    </com.bluehomestudio.luckywheel.LuckyWheel>
 
     <Button
         android:id="@+id/start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
         android:backgroundTint="@color/teal"
+        android:text="@string/start"
         android:textColor="@android:color/white"
-        android:text="@string/start"/>
+        LuckyWheel:layout_constraintBottom_toBottomOf="parent"
+        LuckyWheel:layout_constraintEnd_toEndOf="parent"
+        LuckyWheel:layout_constraintHorizontal_bias="0.473"
+        LuckyWheel:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:shadowColor="@color/light_teal"
+        android:shadowDx="5"
+        android:shadowRadius="5"
+        android:textColor="@android:color/white"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        LuckyWheel:layout_constraintEnd_toEndOf="parent"
+        LuckyWheel:layout_constraintStart_toStartOf="parent"
+        LuckyWheel:layout_constraintTop_toBottomOf="@+id/lwv"
+        tools:text="Name" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
